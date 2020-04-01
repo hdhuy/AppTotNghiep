@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shoe_store</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping resource="Model/OrderAppDetail.hbm.xml"/>
+    <mapping resource="Model/OrderApp.hbm.xml"/>
+    <mapping resource="Model/ProductSize.hbm.xml"/>
+    <mapping resource="Model/OrderWebsiteDetail.hbm.xml"/>
+    <mapping resource="Model/OrderWebsite.hbm.xml"/>
+    <mapping resource="Model/Brand.hbm.xml"/>
+    <mapping resource="Model/CartItem.hbm.xml"/>
+    <mapping resource="Model/Product.hbm.xml"/>
+    <mapping resource="Model/Comment.hbm.xml"/>
+    <mapping resource="Model/User.hbm.xml"/>
+    <mapping resource="Model/Category.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

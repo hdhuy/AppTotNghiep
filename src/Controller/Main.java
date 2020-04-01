@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import Model.User;
 import View.Login;
+import View.Working;
 
 /**
  *
@@ -17,8 +19,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login log= new Login();
-        log.setVisible(true);
+//        Login log= new Login();
+//        log.setVisible(true);
+        User u = new User();
+        //u.setRole("ROLE_APP_MANAGER");
+        u.setRole("ROLE_ADMIN");
+        //u.setRole("ROLE_APP_STAFF");
+        Working w= new Working(u);
+        w.setVisible(true);
     }
     
 }

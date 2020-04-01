@@ -5,7 +5,10 @@
  */
 package View;
 
+import Controller.DataTransacter;
+import Model.User;
 import java.awt.Color;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -58,12 +61,18 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Lỗi slide \n" + e);
         }
     }
+    DataTransacter dt = new DataTransacter();
 
     private void dangnhap() {
         try {
-            Working w = new Working();
-            w.setVisible(true);
-            this.setVisible(false);
+            String name = txtTendangnhap.getText();
+            String pass = txtPass.getText();
+            List<User> list = dt.select("select from User where id='" + name + "' and password='" + pass + "'");
+            if (list.size() > 0) {
+                Working w = new Working(list.get(0));
+                w.setVisible(true);
+                this.setVisible(false);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Lỗi đăng nhập \n" + e);
         }
@@ -93,7 +102,7 @@ public class Login extends javax.swing.JFrame {
         pnlLot = new javax.swing.JPanel();
         lblTieudematkhau = new javax.swing.JLabel();
         pnlLot1 = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -227,7 +236,7 @@ public class Login extends javax.swing.JFrame {
         pnlDangnhap.setBackground(new java.awt.Color(255, 102, 102));
 
         lblTieudedangnhap.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        lblTieudedangnhap.setText("Tên đăng nhập");
+        lblTieudedangnhap.setText("Mã nhân viên");
 
         txtTendangnhap.setBackground(new java.awt.Color(255, 102, 102));
         txtTendangnhap.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -265,10 +274,10 @@ public class Login extends javax.swing.JFrame {
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 102, 102));
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setBorder(null);
+        txtPass.setBackground(new java.awt.Color(255, 102, 102));
+        txtPass.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtPass.setBorder(null);
 
         jButton2.setBackground(new java.awt.Color(255, 0, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -303,7 +312,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtTendangnhap)
                     .addComponent(pnlLot, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTieudedangnhap))
                 .addGap(31, 31, 31))
         );
@@ -322,12 +331,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(lblTieudematkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlLot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
+                .addGap(98, 98, 98))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -387,7 +396,6 @@ public class Login extends javax.swing.JFrame {
     private void s4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s4ActionPerformed
         slide(4);
     }//GEN-LAST:event_s4ActionPerformed
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,7 +406,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblTieudedangnhap;
     private javax.swing.JLabel lblTieudematkhau;
     private javax.swing.JPanel pnlDangnhap;
@@ -414,6 +421,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel sl2;
     private javax.swing.JLabel sl3;
     private javax.swing.JLabel sl4;
+    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtTendangnhap;
     // End of variables declaration//GEN-END:variables
 
