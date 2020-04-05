@@ -17,7 +17,7 @@ public class DataTransacter {
             re = query.list();
             session.close();
         } catch (Exception e) {
-            System.out.println("Lỗi select brand \n" + e);
+            System.out.println("Lỗi select data \n" + e);
         }
         return re;
     }
@@ -32,7 +32,7 @@ public class DataTransacter {
             session.close();
             re=true;
         } catch (Exception e) {
-            System.out.println("Lỗi insert \n" + e);
+            System.out.println("Lỗi insert data \n" + e);
         }
         return re;
     }
@@ -62,7 +62,7 @@ public class DataTransacter {
             session.close();
             re=true;
         } catch (Exception e) {
-            System.out.println("Lỗi update Brand \n" + e);
+            System.out.println("Lỗi update data \n" + e);
         }
         return re;
     }

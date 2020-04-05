@@ -24,6 +24,8 @@ public class Main {
         User u = new User();
         //u.setRole("ROLE_APP_MANAGER");
         u.setRole("ROLE_ADMIN");
+        u.setId(1l);
+        u.setName("a hi hi");
         //u.setRole("ROLE_APP_STAFF");
         Working w= new Working(u);
         w.setVisible(true);
