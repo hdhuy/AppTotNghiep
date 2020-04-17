@@ -67,11 +67,21 @@ public class Login extends javax.swing.JFrame {
         try {
             String name = txtTendangnhap.getText();
             String pass = txtPass.getText();
-            List<User> list = dt.select("select from User where id='" + name + "' and password='" + pass + "'");
+            List<User> list = dt.select("from User");
             if (list.size() > 0) {
-                Working w = new Working(list.get(0));
-                w.setVisible(true);
-                this.setVisible(false);
+                boolean isHave=false;
+                for (User x : list) {
+                    if (x.getId().toString().equals(name) && x.getPassword().toString().equals(pass)) {
+                        Working w = new Working(x);
+                        w.setVisible(true);
+                        this.setVisible(false);
+                        isHave=true;
+                        break;
+                    }
+                }
+                if(isHave==false){
+                    JOptionPane.showMessageDialog(null, "Mã người dùng hoặc mật khẩu sai !", "Lỗi đăng nhập", 0);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Lỗi đăng nhập \n" + e);

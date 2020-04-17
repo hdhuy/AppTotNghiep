@@ -143,6 +143,10 @@ public class Product  implements java.io.Serializable {
     public void setProductSizes(Set<ProductSize> productSizes) {
         this.productSizes = productSizes;
     }
+    public void setId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 
