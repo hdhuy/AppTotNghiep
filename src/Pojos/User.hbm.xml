@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2020 4:34:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="shoe_store" name="Pojos.User" optimistic-lock="version" table="user">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="createdAt" type="timestamp">
+      <column length="19" name="created_at"/>
+    </property>
+    <property name="updatedAt" type="timestamp">
+      <column length="19" name="updated_at"/>
+    </property>
+    <property name="address" type="string">
+      <column length="200" name="address"/>
+    </property>
+    <property name="dateOfBirth" type="date">
+      <column length="10" name="date_of_birth"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email" not-null="true" unique="true"/>
+    </property>
+    <property name="gender" type="java.lang.Boolean">
+      <column name="gender"/>
+    </property>
+    <property name="imageData" type="binary">
+      <column name="image_data"/>
+    </property>
+    <property name="imagePath" type="string">
+      <column length="500" name="image_path"/>
+    </property>
+    <property name="isDelete" type="boolean">
+      <column name="is_delete" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="100" name="name" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="200" name="password" not-null="true"/>
+    </property>
+    <property name="phone" type="string">
+      <column length="20" name="phone"/>
+    </property>
+    <property name="role" type="string">
+      <column length="50" name="role"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="orderApps" table="order_app">
+      <key>
+        <column name="employee_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.OrderApp"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="orderWebs" table="order_web">
+      <key>
+        <column name="customer_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.OrderWeb"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productReviews" table="product_review">
+      <key>
+        <column name="customer_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductReview"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productViews" table="product_view">
+      <key>
+        <column name="customer_id"/>
+      </key>
+      <one-to-many class="Pojos.ProductView"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="userWishlists" table="user_wishlist">
+      <key>
+        <column name="customer_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.UserWishlist"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="cartItems" table="cart_item">
+      <key>
+        <column name="customer_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.CartItem"/>
+    </set>
+  </class>
+</hibernate-mapping>
