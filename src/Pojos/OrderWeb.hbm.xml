@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2020 4:34:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="shoe_store" name="Pojos.OrderWeb" optimistic-lock="version" table="order_web">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Pojos.User" fetch="select" name="user">
+      <column name="customer_id" not-null="true"/>
+    </many-to-one>
+    <property name="createdAt" type="timestamp">
+      <column length="19" name="created_at"/>
+    </property>
+    <property name="updatedAt" type="timestamp">
+      <column length="19" name="updated_at"/>
+    </property>
+    <property name="consignee" type="string">
+      <column length="100" name="consignee" not-null="true"/>
+    </property>
+    <property name="consigneePhone" type="string">
+      <column length="20" name="consignee_phone" not-null="true"/>
+    </property>
+    <property name="deliveryAddress" type="string">
+      <column length="200" name="delivery_address" not-null="true"/>
+    </property>
+    <property name="deliveryStatus" type="string">
+      <column length="50" name="delivery_status" not-null="true"/>
+    </property>
+    <property name="paymentMethod" type="string">
+      <column length="50" name="payment_method" not-null="true"/>
+    </property>
+    <property name="paymentStatus" type="string">
+      <column length="50" name="payment_status" not-null="true"/>
+    </property>
+    <property name="totalAmount" type="long">
+      <column name="total_amount" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="orderWebDetails" table="order_web_detail">
+      <key>
+        <column name="order_web_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.OrderWebDetail"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="deliveryLogs" table="delivery_log">
+      <key>
+        <column name="order_web_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.DeliveryLog"/>
+    </set>
+  </class>
+</hibernate-mapping>

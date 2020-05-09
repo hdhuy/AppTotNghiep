@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2020 4:34:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="shoe_store" name="Pojos.Product" optimistic-lock="version" table="product">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Pojos.Brand" fetch="select" name="brand">
+      <column name="brand_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Pojos.Category" fetch="select" name="category">
+      <column name="category_id" not-null="true"/>
+    </many-to-one>
+    <property name="createdAt" type="timestamp">
+      <column length="19" name="created_at"/>
+    </property>
+    <property name="updatedAt" type="timestamp">
+      <column length="19" name="updated_at"/>
+    </property>
+    <property name="description" type="string">
+      <column length="500" name="description"/>
+    </property>
+    <property name="isDelete" type="boolean">
+      <column name="is_delete" not-null="true"/>
+    </property>
+    <property name="name" type="string">
+      <column length="100" name="name" not-null="true"/>
+    </property>
+    <property name="price" type="long">
+      <column name="price" not-null="true"/>
+    </property>
+    <property name="status" type="string">
+      <column length="50" name="status" not-null="true"/>
+    </property>
+    <property name="versionName" type="string">
+      <column length="50" name="version_name"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="productReviews" table="product_review">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductReview"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productSizes" table="product_size">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductSize"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productViews" table="product_view">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductView"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productImages" table="product_image">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductImage"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="userWishlists" table="user_wishlist">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.UserWishlist"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="productColors" table="product_color">
+      <key>
+        <column name="product_id" not-null="true"/>
+      </key>
+      <one-to-many class="Pojos.ProductColor"/>
+    </set>
+  </class>
+</hibernate-mapping>

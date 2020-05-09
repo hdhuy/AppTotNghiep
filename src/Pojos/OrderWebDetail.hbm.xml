@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 23, 2020 4:34:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="shoe_store" name="Pojos.OrderWebDetail" optimistic-lock="version" table="order_web_detail">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Pojos.OrderWeb" fetch="select" name="orderWeb">
+      <column name="order_web_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Pojos.ProductSize" fetch="select" name="productSize">
+      <column name="product_size_id" not-null="true"/>
+    </many-to-one>
+    <property name="createdAt" type="timestamp">
+      <column length="19" name="created_at"/>
+    </property>
+    <property name="updatedAt" type="timestamp">
+      <column length="19" name="updated_at"/>
+    </property>
+    <property name="price" type="long">
+      <column name="price" not-null="true"/>
+    </property>
+    <property name="quantity" type="int">
+      <column name="quantity" not-null="true"/>
+    </property>
+    <property name="totalAmount" type="long">
+      <column name="total_amount" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

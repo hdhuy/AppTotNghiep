@@ -1,13 +1,13 @@
 
-package View;
+package Model;
 
 public class HoaDon {
-    long id;
-    String ten;
-    int soluong;
-    int size;
-    long gia;
-    long tt;
+    public long id;
+    public String ten;
+    public int soluong;
+    public int size;
+    public long gia;
+    public long tt;
 
     public long getId() {
         return id;
